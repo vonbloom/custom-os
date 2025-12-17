@@ -1,0 +1,24 @@
+# Utilitzem la imatge oficial de Fedora com a base
+FROM fedora:43
+
+# Actualitzem el sistema i instal·lem les eines necessàries
+# - podman: Per gestionar contenidors
+# - cosign: Per a la signatura i verificació d'imatges
+# - bash: L'intèrpret de comandes (sol venir per defecte, però l'assegurem)
+RUN dnf -y update && \
+    dnf -y install \
+    git \
+    podman \
+    bash \
+    curl \
+    xz && \
+    dnf clean all
+
+# 2. Descarreguem i instal·lem l'última versió de Cosign
+#    Busquem l'última versió disponible a GitHub i descarreguem el binari per a Linux amd64
+RUN COSIGN_VERSION=$(curl -s https://api.github.com/repos/sigstore/cosign/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') && \
+    curl -Lo /usr/local/bin/cosign https://github.com/sigstore/cosign/releases/download/${COSIGN_VERSION}/cosign-linux-amd64 && \
+    chmod +x /usr/local/bin/cosign
+
+# Definim Bash com l'entrada per defecte
+CMD ["/bin/bash"]

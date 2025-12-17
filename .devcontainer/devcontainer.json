@@ -1,0 +1,6 @@
+{
+    "name": "custom-os",
+    "build": {
+        "dockerfile": "Containerfile"
+    }
+}
