@@ -77,6 +77,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
 
+      - name: Log in to GHCR (for sudo podman)
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | sudo podman login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build disk images
       - name: Build disk images
         id: build
         uses: osbuild/bootc-image-builder-action@main
