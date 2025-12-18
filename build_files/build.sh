@@ -8,6 +8,9 @@ echo "root:\$6\$MKg6cGNyAXu4pqcM\$DOVdXJ4SIPeDtsaMf8DK3mvJzuvUCALLESWLWbdTwKLq58
 echo "roger:\$6\$j80GfNM2z91f61qz\$Rn3VOL2KPPXZZNDgtvO0SQWdmArC3cmO0kSiw9MaT4TirmFr1so.GzIPz2BYbg86ob2tqXxNqWXGYZrbE7tu90" | chpasswd -e
 echo 'roger ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/roger
 
+### Bootc options
+echo "kernel_arg: quiet splash" > /usr/lib/bootc/kargs.d/00-quiet.toml
+
 ### Install packages
 
 # Packages can be installed from any enabled yum repo on the image.
@@ -29,3 +32,4 @@ dnf5 install -y NetworkManager-wifi iwlwifi-mvm-firmware linux-firmware
 
 systemctl enable NetworkManager
 systemctl enable podman.socket
+systemctl
