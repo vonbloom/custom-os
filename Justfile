@@ -165,6 +165,7 @@ _build-bib $target_image $tag $type $config: (_rootful_load_image target_image t
     args="--type ${type} "
     args+="--use-librepo=True "
     args+="--rootfs=btrfs"
+    args+="--source ghcr.io/vonbloom/custom-os:latest"
 
     BUILDTMP=$(mktemp -p "${PWD}" -d -t _build-bib.XXXXXXXXXX)
 

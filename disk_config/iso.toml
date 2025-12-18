@@ -1,3 +1,14 @@
 [[customizations.filesystem]]
 mountpoint = "/"
 minsize = "20 GiB"
+
+[customizations]
+# Configura l'idioma del sistema
+locale = "ca_ES.UTF-8"
+
+[customizations.keyboard]
+# Configura el teclat de la consola (el que vconsole.conf necessita)
+layout = "es"
+
+[customizations.timezone]
+timezone = "Europe/Madrid"

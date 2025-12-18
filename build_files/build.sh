@@ -10,13 +10,11 @@ echo 'roger ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/roger
 
 ### Bootc options
 mkdir -p /usr/lib/bootc/kargs.d
-echo 'kargs = ["quiet", "rhgb", "splash"]' > /usr/lib/bootc/kargs.d/00-quiet.toml
+echo 'kargs = ["quiet"]' > /usr/lib/bootc/kargs.d/00-quiet.toml
 
 ### Set language
 echo "KEYMAP=es" > /etc/vconsole.conf
 echo "LANG=ca_ES.UTF-8" > /etc/locale.conf
-
-dracut -f --regenerate-all
 
 ### Install packages
 
@@ -26,7 +24,9 @@ dracut -f --regenerate-all
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y NetworkManager-wifi iwlwifi-mvm-firmware linux-firmware glibc-langpack-ca
+dnf5 install -y NetworkManager-wifi \
+    iwlwifi-mvm-firmware amd-gpu-firmware amd-ucode-firmware \
+    glibc-langpack-ca
 dnf5 clean all
 
 # Use a COPR Example:
