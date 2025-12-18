@@ -13,7 +13,10 @@ mkdir -p /usr/lib/bootc/kargs.d
 echo 'kargs = ["quiet", "rhgb", "splash"]' > /usr/lib/bootc/kargs.d/00-quiet.toml
 
 ### Set language
+echo "KEYMAP=es" > /etc/vconsole.conf
 echo "LANG=ca_ES.UTF-8" > /etc/locale.conf
+
+dracut -f --regenerate-all
 
 ### Install packages
 
