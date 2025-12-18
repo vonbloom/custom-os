@@ -4,8 +4,8 @@ set -ouex pipefail
 
 ### Set users
 useradd -m -G wheel roger
-echo "root:$6$MKg6cGNyAXu4pqcM$DOVdXJ4SIPeDtsaMf8DK3mvJzuvUCALLESWLWbdTwKLq58tY2mg8sRR9W1k3yLohj69afFtc/jtGG9qolpddF." | chpasswd -e
-echo "roger:$6$j80GfNM2z91f61qz$Rn3VOL2KPPXZZNDgtvO0SQWdmArC3cmO0kSiw9MaT4TirmFr1so.GzIPz2BYbg86ob2tqXxNqWXGYZrbE7tu90" | chpasswd -e
+echo "root:\$6\$MKg6cGNyAXu4pqcM\$DOVdXJ4SIPeDtsaMf8DK3mvJzuvUCALLESWLWbdTwKLq58tY2mg8sRR9W1k3yLohj69afFtc/jtGG9qolpddF." | chpasswd -e
+echo "roger:\$6\$j80GfNM2z91f61qz\$Rn3VOL2KPPXZZNDgtvO0SQWdmArC3cmO0kSiw9MaT4TirmFr1so.GzIPz2BYbg86ob2tqXxNqWXGYZrbE7tu90" | chpasswd -e
 echo 'roger ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/roger
 
 ### Install packages
