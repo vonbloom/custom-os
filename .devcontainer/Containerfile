@@ -10,6 +10,7 @@ RUN dnf -y update && \
     git \
     podman \
     bash \
+    just \
     curl \
     xz && \
     dnf clean all
