@@ -9,7 +9,8 @@ echo "roger:\$6\$j80GfNM2z91f61qz\$Rn3VOL2KPPXZZNDgtvO0SQWdmArC3cmO0kSiw9MaT4Tir
 echo 'roger ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/roger
 
 ### Bootc options
-echo "kernel_arg: quiet splash" > /usr/lib/bootc/kargs.d/00-quiet.toml
+mkdir -p /usr/lib/bootc/kargs.d
+echo 'kargs = ["quiet", "rhgb", "splash"]' > /usr/lib/bootc/kargs.d/00-quiet.toml
 
 ### Install packages
 
