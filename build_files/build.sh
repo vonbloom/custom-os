@@ -32,4 +32,3 @@ dnf5 install -y NetworkManager-wifi iwlwifi-mvm-firmware linux-firmware
 
 systemctl enable NetworkManager
 systemctl enable podman.socket
-systemctl
