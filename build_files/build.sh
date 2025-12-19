@@ -24,9 +24,13 @@ echo "LANG=ca_ES.UTF-8" > /etc/locale.conf
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y NetworkManager-wifi \
-    iwlwifi-mvm-firmware amd-gpu-firmware amd-ucode-firmware \
-    glibc-langpack-ca
+dnf5 install -y \
+    NetworkManager-wifi \
+    iwlwifi-mvm-firmware \
+    glibc-langpack-ca \
+    nix
+    #amd-gpu-firmware \
+    #amd-ucode-firmware \
 dnf5 clean all
 
 # Use a COPR Example:
