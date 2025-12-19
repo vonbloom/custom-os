@@ -17,7 +17,8 @@ echo "KEYMAP=es" > /etc/vconsole.conf
 echo "LANG=ca_ES.UTF-8" > /etc/locale.conf
 
 ### Set nix path
-mkdir /var/nix
+rm -rf /nix
+mkdir -p /var/nix
 ln -s /var/nix /nix
 
 ### Install packages
