@@ -24,7 +24,7 @@ echo "LANG=ca_ES.UTF-8" > /etc/locale.conf
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this removes packages
-dnf5 remove nano nano-default-editor
+dnf5 remove -y nano nano-default-editor
 
 # this installs package from fedora repos
 dnf5 install -y \
