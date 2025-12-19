@@ -10,16 +10,11 @@ echo 'roger ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/roger
 
 ### Bootc options
 mkdir -p /usr/lib/bootc/kargs.d
-echo 'kargs = ["quiet"]' > /usr/lib/bootc/kargs.d/00-quiet.toml
+echo 'kargs = ["loglevel=3"]' > /usr/lib/bootc/kargs.d/00-quiet.toml
 
 ### Set language
 echo "KEYMAP=es" > /etc/vconsole.conf
 echo "LANG=ca_ES.UTF-8" > /etc/locale.conf
-
-### Set nix path
-#rm -rf /nix
-#mkdir -p /var/nix
-#ln -s /var/nix /nix
 
 ### Install packages
 
@@ -28,14 +23,19 @@ echo "LANG=ca_ES.UTF-8" > /etc/locale.conf
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
-# this installs a package from fedora repos
+# this removes packages
+dnf5 remove nano nano-default-editor
+
+# this installs package from fedora repos
 dnf5 install -y \
     NetworkManager-wifi \
     iwlwifi-mvm-firmware \
     glibc-langpack-ca \
-    nix
+    nix \
+    vim-default-editor
     #amd-gpu-firmware \
     #amd-ucode-firmware \
+
 dnf5 clean all
 
 # Use a COPR Example:
@@ -44,6 +44,11 @@ dnf5 clean all
 # dnf5 -y install package
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
+
+### Set nix path
+rm -rf /var/nix
+mv /nix /var/nix
+ln -s /var/nix /nix
 
 #### Example for enabling a System Unit File
 
