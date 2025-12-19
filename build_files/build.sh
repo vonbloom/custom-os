@@ -16,6 +16,10 @@ echo 'kargs = ["quiet"]' > /usr/lib/bootc/kargs.d/00-quiet.toml
 echo "KEYMAP=es" > /etc/vconsole.conf
 echo "LANG=ca_ES.UTF-8" > /etc/locale.conf
 
+### Set nix path
+mkdir /var/nix
+ln -s /var/nix /nix
+
 ### Install packages
 
 # Packages can be installed from any enabled yum repo on the image.
