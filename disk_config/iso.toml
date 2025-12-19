@@ -1,3 +1,6 @@
+[customizations.kernel]
+append = "loglevel=3 inst.keymap=es"
+
 [[customizations.filesystem]]
 mountpoint = "/"
 minsize = "20 GiB"
