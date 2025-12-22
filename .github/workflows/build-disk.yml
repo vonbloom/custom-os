@@ -77,6 +77,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
 
+      - name: Enable unprivileged userns
+        run: |
+          sudo sysctl -w kernel.unprivileged_userns_clone=1
+          # En Ubuntu 24.04 a vegades cal desactivar el perfil d'AppArmor per a bwrap
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
+
       - name: Build disk images
         id: build
         uses: osbuild/bootc-image-builder-action@main
@@ -86,7 +92,7 @@ jobs:
           image: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}
           chown: ${{ env.USER_UID }}:${{ env.USER_GID }}
           types: ${{ matrix.disk-type }}
-          additional-args: --use-librepo=True --rootfs xfs
+          additional-args: --rootfs xfs
 
       - name: Upload disk images and Checksum to Job Artifacts
         if: inputs.upload-to-s3 != true && github.event_name != 'pull_request'
